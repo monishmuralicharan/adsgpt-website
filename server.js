@@ -1,31 +1,16 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Get __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express');
+const enforce = require('express-sslify');
 
 const app = express();
 
-// Middleware to redirect HTTP to HTTPS
-app.use((req, res, next) => {
-  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
-    next();
-  } else {
-    res.redirect(`https://${req.headers.host}${req.url}`);
-  }
-});
+// Enforce HTTPS
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
-// Serve static files from the build directory
-app.use(express.static(path.join(__dirname, 'dist')));
-
-// Fallback to index.html for SPA
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
 });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
