@@ -1,10 +1,10 @@
-const express = require('express');
-const enforce = require('express-sslify');
+import express from 'express';
+import { HTTPS } from 'express-sslify';
 
 const app = express();
 
 // Enforce HTTPS
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(HTTPS({ trustProtoHeader: true }));
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
