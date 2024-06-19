@@ -16,7 +16,7 @@ const Login = () => {
       console.log("authenticated user log in");
 
       const baseURL = process.env.HEROKU_URL || 'http://localhost:3000'; //second part for local dev
-      const response = await fetch('{HEROKU_URL}/login', {
+      const response = await fetch('{HEROKU_URL}/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ uid: user.uid })

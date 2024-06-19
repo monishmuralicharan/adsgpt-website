@@ -21,7 +21,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.post('/signup', async (req, res) => {
+app.post('/api/signup', async (req, res) => {
   const { user, role } = req.body;
   try {
     if (role === 'creator') {
@@ -38,7 +38,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { uid } = req.body;
   try {
     const user = await getUserRole(uid);
@@ -48,11 +48,25 @@ app.post('/login', async (req, res) => {
   }
 });
 
+/*
 // Serve static files
 app.use(express.static('public'));
 
 const server = createServer(app);
+*/
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Frontend routing - send all non-API requests to React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+// Create HTTP server
+const server = createServer(app);
+
+// Start server
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
