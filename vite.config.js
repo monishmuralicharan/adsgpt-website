@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     inject({
-      global: ['globalThis', 'global'],
+      global: 'globalThis',
     })
   ],
   optimizeDeps: {
@@ -41,10 +41,5 @@ export default defineConfig({
     port: parseInt(process.env.PORT) || 3001,
     strictPort: true,
     host: '0.0.0.0'
-  },
-  define: {
-    'process.env': {
-      REACT_APP_API_BASE_URL: JSON.stringify(process.env.REACT_APP_API_BASE_URL),
-    },
-  },
+  }
 });
