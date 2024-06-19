@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from "cors";
 import { createServer } from 'http';
+import path from 'path';
 import dotenv from 'dotenv';
 import { getUserRole } from '../src/scripts/checkUserRole.js';
 import { addAdvertiser } from '../src/scripts/addAdvertiser.js';
