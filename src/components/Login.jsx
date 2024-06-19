@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
@@ -15,8 +14,8 @@ const Login = () => {
       const user = userCredential.user;
       console.log("authenticated user log in");
 
-      const baseURL = process.env.HEROKU_URL || 'http://localhost:3000'; //second part for local dev
-      const response = await fetch('{HEROKU_URL}/api/login', {
+      const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+      const response = await fetch(`${baseURL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ uid: user.uid })

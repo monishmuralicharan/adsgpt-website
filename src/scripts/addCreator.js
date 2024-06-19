@@ -1,12 +1,12 @@
 // addCreator.js
 import { connectDB } from '../../mongoClient.js';
-import { ObjectId, Binary } from 'mongodb';
+import { Binary } from 'mongodb';
 import datetime from 'node-datetime';
-import secrets from 'secrets';
+import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 
 function generateToken() {
-  return secrets.tokenHex(16);
+  return crypto.randomBytes(16).toString('hex');
 }
 
 function hashToken(token) {
@@ -31,7 +31,7 @@ export async function addCreator(user) {
     apiCallCountMonthly: 0,
     createdAt: datetime.create().now(),
     lastActive: datetime.create().now(),
-    apiToken: Binary(hashedToken),
+    apiToken: new Binary(Buffer.from(hashedToken)),
     role: "creator"
   };
 

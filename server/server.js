@@ -1,5 +1,6 @@
-import express from 'express';
+import express from 'express'
 import cors from "cors";
+import bodyParser from 'body-parser';
 import { createServer } from 'http';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -11,19 +12,11 @@ dotenv.config();
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Allow requests from specific origins
-const corsOptions = {
-  origin: 'https://your-heroku-app.herokuapp.com',
-  // Additional options as needed
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.post('/api/signup', async (req, res) => {
   const { user, role } = req.body;
@@ -64,13 +57,12 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Frontend routing - send all non-API requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-// Create HTTP server
-const server = createServer(app);
-
-// Start server
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// server creation
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });
+

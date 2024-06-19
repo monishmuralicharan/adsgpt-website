@@ -15,9 +15,8 @@ const SignUp = ({ role }) => {
       const user = userCredential.user;
       console.log("authenticated user sign up");
 
-      const baseURL = process.env.HEROKU_URL || 'http://localhost:3000'; //second part for local dev
-      // Send user data and role to the server
-      await axios.post('{HEROKU_URL}/api/signup', { user: { uid: user.uid, email: user.email }, role });
+      const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+      await axios.post(`${baseURL}/api/signup`, { user: { uid: user.uid, email: user.email }, role });
 
       window.location.href = role === 'creator' ? '/creator-dashboard' : '/advertiser-dashboard';
     } catch (error) {
