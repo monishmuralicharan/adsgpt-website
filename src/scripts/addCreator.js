@@ -2,11 +2,11 @@
 import { connectDB } from '../../mongoClient.js';
 import { Binary } from 'mongodb';
 import datetime from 'node-datetime';
-import crypto from 'crypto';
+import crypto from 'crypto-js';
 import bcrypt from 'bcrypt';
 
 function generateToken() {
-  return crypto.randomBytes(16).toString('hex');
+  return CryptoJS.lib.WordArray.random(16).toString();
 }
 
 function hashToken(token) {
