@@ -1,7 +1,7 @@
+// Login.js
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth } from '../firebaseConfig';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,22 +11,27 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-        console.log("inside log in try");
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      console.log("authenticated user log in");
 
-      // Retrieve user role from Firestore
-      const docRef = doc(db, 'users', user.uid);
-      const docSnap = await getDoc(docRef);
+      const baseURL = process.env.HEROKU_URL || 'http://localhost:3000'; //second part for local dev
+      const response = await fetch('{HEROKU_URL}/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid: user.uid })
+      });
+      console.log("found user in database log in");
 
-      if (docSnap.exists()) {
-        const role = docSnap.data().role;
+      if (response.ok) {
+        const data = await response.json();
+        const role = data.role;
         window.location.href = role === 'creator' ? '/creator-dashboard' : '/advertiser-dashboard';
       } else {
-        setError("No such document!");
+        const errorData = await response.json();
+        setError(errorData.message);
       }
     } catch (error) {
-      console.error("Error during login:", error);
       setError(error.message);
     }
   };

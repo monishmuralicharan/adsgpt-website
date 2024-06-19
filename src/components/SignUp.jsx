@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebaseConfig';
-import { setDoc, doc } from 'firebase/firestore';
+import { auth } from '../firebaseConfig';
+import axios from 'axios';
 
 const SignUp = ({ role }) => {
   const [email, setEmail] = useState('');
@@ -13,12 +13,15 @@ const SignUp = ({ role }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      console.log("authenticated user sign up");
 
-      await setDoc(doc(db, 'users', user.uid), { role });
+      const baseURL = process.env.HEROKU_URL || 'http://localhost:3000'; //second part for local dev
+      // Send user data and role to the server
+      await axios.post('{HEROKU_URL}/signup', { user: { uid: user.uid, email: user.email }, role });
 
       window.location.href = role === 'creator' ? '/creator-dashboard' : '/advertiser-dashboard';
     } catch (error) {
-      setError(error.message);
+      setError(error.response?.data?.message || error.message);
     }
   };
 
