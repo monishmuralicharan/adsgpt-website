@@ -39,16 +39,33 @@ const Login = () => {
     <div className="w-full max-w-xs mx-auto mt-20">
       <h1 className="text-white text-3xl font-bold mb-4">Login</h1>
       <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input className="text-black" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block mb-2">Email:</label>
+          <input
+            className="text-black rounded-lg w-full p-2"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Password:</label>
-          <input className="text-black" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block mb-2">Password:</label>
+          <input
+            className="text-black rounded-lg w-full p-2"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
-        <button type="submit">Log In</button>
-        {error && <p>{error}</p>}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded border border-blue-500 hover:bg-blue-700 hover:border-blue-700 focus:bg-blue-800 focus:border-blue-800 mb-20 mt-2"
+        >
+          Log In
+        </button>
+        {error && <p className="text-red-500 mt-4">{error}</p>}
       </form>
     </div>
   );
