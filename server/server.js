@@ -53,11 +53,11 @@ const server = createServer(app);
 */
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Frontend routing - send all non-API requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 
 // server creation
