@@ -20,7 +20,7 @@ export default function Home() {
           start earing ad revenue
         </Typography>
         <a
-          href="https://map.sistilli.dev/public/coding/SaaS+Boilerplate"
+          href="/signup-creator"
           target="_blank"
           rel="noopener noreferrer"
         >

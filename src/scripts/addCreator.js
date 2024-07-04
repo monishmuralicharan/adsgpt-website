@@ -29,6 +29,7 @@ export async function addCreator(user) {
     apiCallCountDaily: 0,
     apiCallCountWeekly: 0,
     apiCallCountMonthly: 0,
+    adClickCount: 0,
     createdAt: datetime.create().now(),
     lastActive: datetime.create().now(),
     apiToken: new Binary(Buffer.from(hashedToken)),

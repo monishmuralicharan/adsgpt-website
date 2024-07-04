@@ -15,7 +15,7 @@ function Header({ className }) {
   const location = useLocation();
   const items = [
     {
-      href: 'mailto:monish.muralicharan@gmail.com?subject=AdsGPT%20Inquiry&body=Specify%20if%20you%20are%20contacting%20us%20as%20a%20potential%20advertiser%20or%20custom%20GPT%20creator.',
+      href: 'mailto:adsgpt.info@gmail.com?subject=AdsGPT%20Inquiry&body=Hello!%0A%0AI%20have%20an%20inquiry%20about...',
       title: 'Contact Us',
       openInNewTab: true
     }
