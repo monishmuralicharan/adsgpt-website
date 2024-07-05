@@ -19,10 +19,11 @@ app.use(express.json());
 app.use(cors());
 
 app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production' && !req.secure) {
-    return res.redirect('https://' + req.headers.host + req.url);
+  if (process.env.NODE_ENV === 'production' && req.header('x-forwarded-proto') !== 'https') {
+    res.redirect(`https://${req.header('host')}${req.url}`);
+  } else {
+    next();
   }
-  next();
 });
 
 app.post('/api/signup', async (req, res) => {
