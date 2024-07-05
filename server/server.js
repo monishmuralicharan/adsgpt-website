@@ -18,6 +18,13 @@ app.use(express.json());
 
 app.use(cors());
 
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && !req.secure) {
+    return res.redirect('https://' + req.headers.host + req.url);
+  }
+  next();
+});
+
 app.post('/api/signup', async (req, res) => {
   const { user, role } = req.body;
   try {
@@ -45,12 +52,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-/*
-// Serve static files
-app.use(express.static('public'));
-
-const server = createServer(app);
-*/
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../dist')));
