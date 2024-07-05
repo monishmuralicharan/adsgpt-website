@@ -21,7 +21,6 @@ export default function Home() {
         </Typography>
         <a
           href="/signup-creator"
-          target="_blank"
           rel="noopener noreferrer"
         >
           <Button size="tiny" variant="ghost">
