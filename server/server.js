@@ -14,6 +14,15 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const app = express();
 
+function forceHttps(req, res, next) {
+  if (process.env.NODE_ENV === 'production' && !req.secure && req.get('x-forwarded-proto') !== 'https') {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+}
+
+app.use(forceHttps);
+
 app.use(express.json());
 
 app.use(cors());
