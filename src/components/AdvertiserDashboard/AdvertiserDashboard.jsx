@@ -18,7 +18,7 @@ const AdvertiserDashboard = () => {
         if (response.ok) {
           const data = await response.json();
           setUserInfo(data);
-          console.log("data found");
+          console.log(userInfo.adClickCount);
         } else {
           const errorData = await response.json();
           setError(errorData.message);
