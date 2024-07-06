@@ -20,61 +20,61 @@ const AdvertiserDashboard = () => {
       <main className="flex-1 p-6">
         <header className="bg-white shadow mb-6">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">Advertiser Dashboard</h1>
+            <h1 className="text-3xl font-bold text-black">Advertiser Dashboard</h1>
           </div>
         </header>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Ad Views Section */}
-          <section className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-gray-800">Ad Views</h2>
-            <div className="grid grid-cols-1 gap-4 mt-4">
+          <section className="bg-white shadow rounded-lg p-6 col-span-1 lg:col-span-2">
+            <h2 className="text-2xl font-semibold text-black">Ad Views</h2>
+            <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Daily Views</h3>
+                <h3 className="font-bold text-black">Daily Views</h3>
                 <p>0</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Monthly Views</h3>
+                <h3 className="font-bold text-black">Monthly Views</h3>
                 <p>0</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Total Views</h3>
+                <h3 className="font-bold text-black">Total Views</h3>
                 <p>0</p>
               </div>
             </div>
           </section>
           {/* Ad Leads Section */}
-          <section className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-gray-800">Ad Leads</h2>
-            <div className="grid grid-cols-1 gap-4 mt-4">
+          <section className="bg-white shadow rounded-lg p-6 col-span-1 lg:col-span-2">
+            <h2 className="text-2xl font-semibold text-black">Ad Leads</h2>
+            <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Daily Leads</h3>
+                <h3 className="font-bold text-black">Daily Leads</h3>
                 <p>0</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Monthly Leads</h3>
+                <h3 className="font-bold text-black">Monthly Leads</h3>
                 <p>0</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
-                <h3 className="font-bold text-gray-700">Total Leads</h3>
+                <h3 className="font-bold text-black">Total Leads</h3>
                 <p>0</p>
               </div>
             </div>
           </section>
         </div>
         {/* Ad Information Section */}
-        <section className="bg-white shadow rounded-lg p-6 mt-6 lg:col-span-3">
-          <h2 className="text-2xl font-semibold text-gray-800">Ad Information</h2>
+        <section className="bg-white shadow rounded-lg p-6 mt-6">
+          <h2 className="text-2xl font-semibold text-black">Ad Information</h2>
           <form className="mt-4 space-y-4">
             <div>
-              <label className="block mb-2">Ad Text:</label>
+              <label className="block mb-2 text-black">Ad Text:</label>
               <input className="text-black rounded-lg w-full p-2 border" type="text" />
             </div>
             <div>
-              <label className="block mb-2">Ad Link:</label>
+              <label className="block mb-2 text-black">Ad Link:</label>
               <input className="text-black rounded-lg w-full p-2 border" type="text" />
             </div>
             <div>
-              <label className="block mb-2">Picture Link:</label>
+              <label className="block mb-2 text-black">Picture Link:</label>
               <input className="text-black rounded-lg w-full p-2 border" type="text" />
             </div>
           </form>
