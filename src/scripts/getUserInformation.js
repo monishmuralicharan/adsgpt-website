@@ -7,12 +7,12 @@ export async function getUserInfo(uid) {
 
   const advertiser = await advertiserCollection.findOne({ identifier: uid });
   if (advertiser) {
-    return {advertiser};
+    return { userType: 'advertiser', data: advertiser };
   }
 
   const creator = await creatorCollection.findOne({ identifier: uid });
   if (creator) {
-    return {creator};
+    return { userType: 'creator', data: creator };
   }
 
   throw new Error('User not found');

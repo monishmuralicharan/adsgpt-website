@@ -60,15 +60,12 @@ app.post('/api/userinfo', async (req, res) => {
   const { uid } = req.body;
   try {
     const userInfo = await getUserInfo(uid);
-    if (userInfo) {
-      res.status(200).json(userInfo);
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
+    res.status(200).json(userInfo);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 
 // Serve static files from the React app

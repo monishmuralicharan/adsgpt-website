@@ -8,8 +8,7 @@ const AdvertiserDashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
-        console.log(`uid: ${uid}`);
+        const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
         const response = await fetch(`${baseURL}/api/userinfo`, {
           method: 'POST',
@@ -19,7 +18,6 @@ const AdvertiserDashboard = () => {
         if (response.ok) {
           const data = await response.json();
           setUserInfo(data);
-          console.log(userInfo.adClickCount);
         } else {
           const errorData = await response.json();
           setError(errorData.message);
@@ -30,9 +28,13 @@ const AdvertiserDashboard = () => {
     };
 
     fetchUserInfo();
-    console.log("fetched user data");
   }, []);
-  console.log("fetched user data");
+
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
+
+  const { data } = userInfo;
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -63,15 +65,15 @@ const AdvertiserDashboard = () => {
             <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Daily Views</h3>
-                <p className="text-black">{userInfo?.adUseCountDaily || 0}</p>
+                <p className="text-black">{data?.adUseCountDaily || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Monthly Views</h3>
-                <p className="text-black">{userInfo?.adUseCountMonthly || 0}</p>
+                <p className="text-black">{data?.adUseCountMonthly || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Total Views</h3>
-                <p className="text-black">{userInfo?.adUseCount || 0}</p>
+                <p className="text-black">{data?.adUseCount || 0}</p>
               </div>
             </div>
           </section>
@@ -81,15 +83,15 @@ const AdvertiserDashboard = () => {
             <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Daily Leads</h3>
-                <p className="text-black">{userInfo?.adClickCountDaily || 0}</p>
+                <p className="text-black">{data?.adClickCountDaily || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Monthly Leads</h3>
-                <p className="text-black">{userInfo?.adClickCountMonthly || 0}</p>
+                <p className="text-black">{data?.adClickCountMonthly || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Total Leads</h3>
-                <p className="text-black">{userInfo?.adClickCount || 0}</p>
+                <p className="text-black">{data?.adClickCount || 0}</p>
               </div>
             </div>
           </section>
