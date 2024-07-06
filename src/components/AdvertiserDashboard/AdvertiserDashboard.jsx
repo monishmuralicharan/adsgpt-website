@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AdvertiserDashboard = () => {
+  const [userInfo, setUserInfo] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
+        const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+        const response = await fetch(`${baseURL}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uid })
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setUserInfo(data);
+        } else {
+          const errorData = await response.json();
+          setError(errorData.message);
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
       <aside className="w-64 bg-white shadow-md">
@@ -9,12 +38,12 @@ const AdvertiserDashboard = () => {
           <button className="mb-4 py-2 px-4 text-left w-full bg-blue-500 text-white rounded hover:bg-blue-600">
             Main Dashboard
           </button>
-          <button className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
+          <Link to="/advertiser-profile" className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
             Profile Dashboard
-          </button>
-          <button className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
+          </Link>
+          <Link to="/advertiser-payment" className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
             Payment
-          </button>
+          </Link>
         </nav>
       </aside>
       <main className="flex-1 p-6">
@@ -30,15 +59,15 @@ const AdvertiserDashboard = () => {
             <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Daily Views</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adUseCountDaily || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Monthly Views</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adUseCountMonthly || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Total Views</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adUseCount || 0}</p>
               </div>
             </div>
           </section>
@@ -48,15 +77,15 @@ const AdvertiserDashboard = () => {
             <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Daily Leads</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adClickCountDaily || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Monthly Leads</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adClickCountMonthly || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Total Leads</h3>
-                <p>0</p>
+                <p className="text-black">{userInfo?.adClickCount || 0}</p>
               </div>
             </div>
           </section>

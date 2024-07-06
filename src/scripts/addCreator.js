@@ -22,14 +22,15 @@ export async function addCreator(user) {
 
   const userDocument = {
     identifier: user.uid,
-    firstName: "",
-    lastName: "",
+    name: "",
     email: user.email,
     apiCallCount: 0,
     apiCallCountDaily: 0,
     apiCallCountWeekly: 0,
     apiCallCountMonthly: 0,
     adClickCount: 0,
+    adClickCountDaily: 0,
+    adClickCountMonthly: 0,
     createdAt: datetime.create().now(),
     lastActive: datetime.create().now(),
     apiToken: new Binary(Buffer.from(hashedToken)),

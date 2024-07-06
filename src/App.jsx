@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Page from './components/Page';
 import TermsOfService from './components/Terms-of-service';
 import AdvertiserDashboard from './components/AdvertiserDashboard/AdvertiserDashboard';
+import AdvertiserProfileDashboard from './components/AdvertiserDashboard/AdvertiserProfileDashboard';
+import AdvertiserPaymentDashboard from './components/AdvertiserDashboard/AdvertiserPaymentDashboard';
 import CreatorDashboard from './components/CreatorDashboard/CreatorDashboard';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
@@ -21,6 +23,8 @@ function App() {
         <Route path="/signup-creator" element={<SignUp role="creator" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/advertiser-dashboard" element={<PrivateRoute><AdvertiserDashboard /></PrivateRoute>} />
+        <Route path="/advertiser-profile" element={<PrivateRoute><AdvertiserProfileDashboard /></PrivateRoute>} />
+        <Route path="/advertiser-payment" element={<PrivateRoute><AdvertiserPaymentDashboard /></PrivateRoute>} />
         <Route path="/creator-dashboard" element={<PrivateRoute><CreatorDashboard /></PrivateRoute>} />
       </Routes>
       <Footer />
