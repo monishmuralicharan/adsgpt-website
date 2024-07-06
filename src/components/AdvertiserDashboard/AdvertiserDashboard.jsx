@@ -1,33 +1,87 @@
 import React from 'react';
 
-const Dashboard = () => {
+const AdvertiserDashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Advertiser Dashboard</h1>
-        </div>
-      </header>
-      <main className="flex-1">
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-              <h2 className="text-2xl font-semibold text-gray-800">Welcome to your dashboard!</h2>
-              <p className="mt-4 text-gray-600">This is a template dashboard. You can customize it to suit your needs.</p>
-              <div className="mt-6">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                  Button 1
-                </button>
-                <button className="ml-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                  Button 2
-                </button>
+    <div className="min-h-screen bg-gray-100 flex">
+      <aside className="w-64 bg-white shadow-md">
+        <div className="h-16 flex items-center justify-center font-bold text-xl">Dashboard</div>
+        <nav className="flex flex-col p-4">
+          <button className="mb-4 py-2 px-4 text-left w-full bg-blue-500 text-white rounded hover:bg-blue-600">
+            Main Dashboard
+          </button>
+          <button className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
+            Profile Dashboard
+          </button>
+          <button className="mb-4 py-2 px-4 text-left w-full bg-gray-300 text-black rounded hover:bg-gray-400">
+            Payment
+          </button>
+        </nav>
+      </aside>
+      <main className="flex-1 p-6">
+        <header className="bg-white shadow mb-6">
+          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold text-gray-900">Advertiser Dashboard</h1>
+          </div>
+        </header>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {/* Ad Views Section */}
+          <section className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Ad Views</h2>
+            <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Daily Views</h3>
+                <p>0</p>
+              </div>
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Monthly Views</h3>
+                <p>0</p>
+              </div>
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Total Views</h3>
+                <p>0</p>
               </div>
             </div>
-          </div>
+          </section>
+          {/* Ad Leads Section */}
+          <section className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Ad Leads</h2>
+            <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Daily Leads</h3>
+                <p>0</p>
+              </div>
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Monthly Leads</h3>
+                <p>0</p>
+              </div>
+              <div className="bg-gray-200 p-4 rounded-lg text-center">
+                <h3 className="font-bold">Total Leads</h3>
+                <p>0</p>
+              </div>
+            </div>
+          </section>
+          {/* Ad Information Section */}
+          <section className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Ad Information</h2>
+            <form className="mt-4 space-y-4">
+              <div>
+                <label className="block mb-2">Ad Text:</label>
+                <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              </div>
+              <div>
+                <label className="block mb-2">Ad Link:</label>
+                <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              </div>
+              <div>
+                <label className="block mb-2">Picture Link:</label>
+                <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              </div>
+            </form>
+          </section>
         </div>
       </main>
     </div>
   );
 };
 
-export default Dashboard;
+export default AdvertiserDashboard;
