@@ -18,7 +18,7 @@ const ProfileDashboard = () => {
       try {
         const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
-        const response = await fetch(`${baseURL}/api/login`, {
+        const response = await fetch(`${baseURL}/api/userinfo`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uid })

@@ -10,7 +10,7 @@ const AdvertiserDashboard = () => {
       try {
         const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
-        const response = await fetch(`${baseURL}/api/login`, {
+        const response = await fetch(`${baseURL}/api/userinfo`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uid })
@@ -18,6 +18,7 @@ const AdvertiserDashboard = () => {
         if (response.ok) {
           const data = await response.json();
           setUserInfo(data);
+          console.log("data found");
         } else {
           const errorData = await response.json();
           setError(errorData.message);
@@ -28,7 +29,9 @@ const AdvertiserDashboard = () => {
     };
 
     fetchUserInfo();
+    console.log("fetched user data");
   }, []);
+  console.log("fetched user data");
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
