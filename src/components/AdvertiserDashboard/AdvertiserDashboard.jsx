@@ -9,6 +9,7 @@ const AdvertiserDashboard = () => {
     const fetchUserInfo = async () => {
       try {
         const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
+        console.log("uid");
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
         const response = await fetch(`${baseURL}/api/userinfo`, {
           method: 'POST',
@@ -62,15 +63,15 @@ const AdvertiserDashboard = () => {
             <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Daily Views</h3>
-                <p className="text-black">{userInfo?.adUseCountDaily || 0}</p>
+                <p className="text-black">{userInfo.adUseCountDaily || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Monthly Views</h3>
-                <p className="text-black">{userInfo?.adUseCountMonthly || 0}</p>
+                <p className="text-black">{userInfo.adUseCountMonthly || 0}</p>
               </div>
               <div className="bg-gray-200 p-4 rounded-lg text-center">
                 <h3 className="font-bold text-black">Total Views</h3>
-                <p className="text-black">{userInfo?.adUseCount || 0}</p>
+                <p className="text-black">{userInfo.adUseCount || 0}</p>
               </div>
             </div>
           </section>
