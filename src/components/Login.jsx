@@ -15,7 +15,7 @@ const Login = () => {
       console.log("authenticated user log in");
 
       // Storing uid in local storage
-      localStorage.setItem('userUID', user.uid);
+      localStorage.setItem('uid', user.uid);
 
       const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
       const response = await fetch(`${baseURL}/api/login`, {
