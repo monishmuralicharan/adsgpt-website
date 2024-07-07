@@ -77,10 +77,10 @@ app.post('/api/updateUserInfo', async (req, res) => {
     const updateResult = await updateUserInfo(uid, data);
     res.status(200).json({ message: 'User information updated successfully' });
   } catch (error) {
+    console.error('Error in updateUserInfo endpoint:', error);
     res.status(500).json({ message: error.message });
   }
 });
-
 
 
 // Serve static files from the React app

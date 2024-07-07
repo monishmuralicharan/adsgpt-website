@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const AdvertiserDashboard = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
-  const [adActive, setAdActive] = useState('false');
+  const [adActive, setAdActive] = useState("true");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -46,21 +46,23 @@ const AdvertiserDashboard = () => {
   };
 
   const handleToggleChange = () => {
-    setAdActive((prev) => (prev === 'true' ? 'false' : 'true'));
+    setAdActive((prev) => (prev === "true" ? "false" : "true"));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
       const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
       const response = await fetch(`${baseURL}/api/updateUserInfo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid, data: { ...data, adActive } })
+        body: JSON.stringify({ uid, data: userInfo })
       });
+  
       if (response.ok) {
-        alert('Ad information updated successfully!');
+        const result = await response.json();
+        alert(result.message);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -69,6 +71,7 @@ const AdvertiserDashboard = () => {
       setError(error.message);
     }
   };
+  
 
 
   return (
@@ -141,7 +144,7 @@ const AdvertiserDashboard = () => {
                 className="text-black rounded-lg w-full p-2 border"
                 type="text"
                 name="adContent"
-                value={data.adContent || ''}
+                value={data.adContent || "content"}
                 onChange={handleInputChange}
               />
             </div>
@@ -151,7 +154,7 @@ const AdvertiserDashboard = () => {
                 className="text-black rounded-lg w-full p-2 border"
                 type="text"
                 name="adLink"
-                value={data.adLink || ''}
+                value={data.adLink || "link"}
                 onChange={handleInputChange}
               />
             </div>
@@ -161,19 +164,19 @@ const AdvertiserDashboard = () => {
                 className="text-black rounded-lg w-full p-2 border"
                 type="text"
                 name="adPictureLink"
-                value={data.adPictureLink || ''}
+                value={data.adPictureLink || "link"}
                 onChange={handleInputChange}
               />
             </div>
             <div className="flex items-center mt-4">
               <input
                 type="checkbox"
-                checked={adActive === 'true'}
+                checked={adActive === "true"}
                 onChange={handleToggleChange}
                 className="mr-2"
               />
               <label className="text-black">
-                {adActive === 'true' ? 'Ad Active' : 'Ad Inactive'}
+                {adActive === "true" ? "Ad Active" : "Ad Inactive"}
               </label>
             </div>
             <button
