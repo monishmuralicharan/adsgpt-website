@@ -16,7 +16,7 @@ const ProfileDashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const uid = localStorage.getItem('uid'); // assuming the uid is stored in localStorage
+        const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
         const response = await fetch(`${baseURL}/api/userinfo`, {
           method: 'POST',
@@ -38,9 +38,15 @@ const ProfileDashboard = () => {
     fetchUserInfo();
   }, []);
 
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
+
+  const { data } = userInfo;
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
+    setUserInfo((prevInfo) => ({ ...prevInfo, data: { ...prevInfo.data, [name]: value } }));
   };
 
   return (
@@ -76,7 +82,7 @@ const ProfileDashboard = () => {
                   className="text-black rounded-lg w-full p-2 border"
                   type="text"
                   name="companyName"
-                  value={userInfo?.companyName || "Company Name"}
+                  value={data.companyName || "Company Name"}
                   onChange={handleInputChange}
                 />
               </div>
@@ -86,7 +92,7 @@ const ProfileDashboard = () => {
                   className="text-black rounded-lg w-full p-2 border"
                   type="email"
                   name="email"
-                  value={userInfo?.email || "Email"}
+                  value={data.email || "Email"}
                   onChange={handleInputChange}
                 />
               </div>
