@@ -51,6 +51,7 @@ const AdvertiserDashboard = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(userInfo);
     try {
       const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
       const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
