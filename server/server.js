@@ -8,6 +8,7 @@ import { getUserRole } from '../src/scripts/checkUserRole.js';
 import { addAdvertiser } from '../src/scripts/addAdvertiser.js';
 import { addCreator } from '../src/scripts/addCreator.js';
 import { getUserInfo } from '../src/scripts/getUserInformation.js';
+import { updateUserInfo } from '../src/scripts/updateUserInfo.js';
 
 dotenv.config();
 
@@ -50,6 +51,20 @@ app.post('/api/login', async (req, res) => {
   try {
     const user = await getUserRole(uid);
     res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post('/api/userInfo', async (req, res) => {
+  const { uid } = req.body;
+  try {
+    const userInfo = await getUserInfo(uid);
+    if (userInfo) {
+      res.status(200).json(userInfo);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

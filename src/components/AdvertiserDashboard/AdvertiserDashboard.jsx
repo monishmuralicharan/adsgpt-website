@@ -11,7 +11,7 @@ const AdvertiserDashboard = () => {
       try {
         const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
         const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
-        const response = await fetch(`${baseURL}/api/userinfo`, {
+        const response = await fetch(`${baseURL}/api/userInfo`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uid })
