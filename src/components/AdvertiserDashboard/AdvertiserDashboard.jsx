@@ -58,7 +58,7 @@ const AdvertiserDashboard = () => {
       const response = await fetch(`${baseURL}/api/updateUserInfo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid, data: userInfo })
+        body: JSON.stringify({ uid, data: userInfo.data })
       });
   
       if (response.ok) {
