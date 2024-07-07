@@ -56,11 +56,11 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-app.post('/api/userinfo', async (req, res) => {
-  const { uid } = req.body;
+app.post('/api/updateUserInfo', async (req, res) => {
+  const { uid, data } = req.body;
   try {
-    const userInfo = await getUserInfo(uid);
-    res.status(200).json(userInfo);
+    const updateResult = await updateUserInfo(uid, data);
+    res.status(200).json({ message: 'User information updated successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

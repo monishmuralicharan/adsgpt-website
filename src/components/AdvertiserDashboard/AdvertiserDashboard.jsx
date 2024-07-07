@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const AdvertiserDashboard = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
+  const [adActive, setAdActive] = useState('false');
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -35,6 +36,40 @@ const AdvertiserDashboard = () => {
   }
 
   const { data } = userInfo;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prevInfo) => ({
+      ...prevInfo,
+      data: { ...prevInfo.data, [name]: value }
+    }));
+  };
+
+  const handleToggleChange = () => {
+    setAdActive((prev) => (prev === 'true' ? 'false' : 'true'));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const uid = localStorage.getItem('uid'); // Fetching the UID from local storage
+      const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+      const response = await fetch(`${baseURL}/api/updateUserInfo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, data: { ...data, adActive } })
+      });
+      if (response.ok) {
+        alert('Ad information updated successfully!');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -99,19 +134,54 @@ const AdvertiserDashboard = () => {
         {/* Ad Information Section */}
         <section className="bg-white shadow rounded-lg p-6 mt-6">
           <h2 className="text-2xl font-semibold text-black">Ad Information</h2>
-          <form className="mt-4 space-y-4">
+          <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block mb-2 text-black">Ad Text:</label>
-              <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              <input
+                className="text-black rounded-lg w-full p-2 border"
+                type="text"
+                name="adContent"
+                value={data.adContent || ''}
+                onChange={handleInputChange}
+              />
             </div>
             <div>
               <label className="block mb-2 text-black">Ad Link:</label>
-              <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              <input
+                className="text-black rounded-lg w-full p-2 border"
+                type="text"
+                name="adLink"
+                value={data.adLink || ''}
+                onChange={handleInputChange}
+              />
             </div>
             <div>
               <label className="block mb-2 text-black">Picture Link:</label>
-              <input className="text-black rounded-lg w-full p-2 border" type="text" />
+              <input
+                className="text-black rounded-lg w-full p-2 border"
+                type="text"
+                name="adPictureLink"
+                value={data.adPictureLink || ''}
+                onChange={handleInputChange}
+              />
             </div>
+            <div className="flex items-center mt-4">
+              <input
+                type="checkbox"
+                checked={adActive === 'true'}
+                onChange={handleToggleChange}
+                className="mr-2"
+              />
+              <label className="text-black">
+                {adActive === 'true' ? 'Ad Active' : 'Ad Inactive'}
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+            >
+              Submit
+            </button>
           </form>
         </section>
       </main>

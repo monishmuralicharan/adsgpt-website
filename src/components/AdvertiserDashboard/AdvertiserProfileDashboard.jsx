@@ -97,7 +97,7 @@ const ProfileDashboard = () => {
                 />
               </div>
               <div className="mt-4 text-black">
-                Account Created: <span>01/01/2024</span> {/* Replace with actual creation date */}
+                Account Created: <span>data.accountCreatedAt</span>
               </div>
             </form>
           </section>
