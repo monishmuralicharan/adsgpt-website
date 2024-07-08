@@ -22,6 +22,7 @@ export default function Home() {
         <div className="flex space-x-4">
         <a
             href="mailto:adsgpt.info@gmail.com?subject=Platform%20Inquiry&body=Please%20write%20a%20description%20of%20your%20platform%2C%20a%20link%20to%20your%20website%2C%20and%20any%20other%20questions%20you%20have.%20We%20will%20respond%20as%20soon%20as%20possible!"
+            target="_blank"
             rel="noopener noreferrer"
           >
             <Button size="tiny" variant="ghost">
