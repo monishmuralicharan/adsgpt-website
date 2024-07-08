@@ -13,11 +13,11 @@ export default function Home() {
     >
       <div className="flex flex-col gap-6 items-center">
         <Typography className="max-w-2xl" variant="h1">
-          Monetize your Custom GPT with Ads
+          Monetize your LLM or AI platform with Ads
         </Typography>
         <Typography className="max-w-2xl" variant="h5">
-          Quickly integrate our api to your custom gpt and
-          start earing ad revenue
+          Quickly integrate our api to your platform or custom gpt and
+          start earning ad revenue
         </Typography>
         <a
           href="/signup-creator"
@@ -44,12 +44,12 @@ export default function Home() {
             <Feature
               icon={<Timer size={24} />}
               headline="Easy Set Up"
-              description="Easily integrated into any custom GPT using OpenAI's native actions API"
+              description="Simple API integration into any platform including custom GPTs"
             />
             <Feature
               icon={<Target size={24} />}
               headline="Customized Ads"
-              description="Ads are targeted to specific users based on their GPT queries"
+              description="Ads are targeted to specific users based on their LLM queries"
             />
             <Feature
               icon={<DollarSign size={24} />}
@@ -60,11 +60,11 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-6 max-w-2xl items-center">
           <Typography className="max-w-2xl" variant="h1">
-            Instant setup, no custom code
+            Instant setup, little custom code
           </Typography>
           <Typography className="max-w-2xl" variant="p">
             Get access to our ad server and automatially
-            receive customized ads on your custom GPT
+            receive customized ads on your platform
           </Typography>
           <img
             className="mt-4 rounded-xl"
