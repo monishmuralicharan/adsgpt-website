@@ -27,6 +27,14 @@ export default function Home() {
             {`Get Started`}
           </Button>
         </a>
+        <a
+          href="/"
+          rel="noopener noreferrer"
+        >
+          <Button size="tiny" className="text-white border-white border bg-transparent hover:bg-white hover:text-black">
+            {`Advertiser Page`}
+          </Button>
+        </a>
         <img
           className="mt-8 rounded-xl"
           width={1048}

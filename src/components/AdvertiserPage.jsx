@@ -16,7 +16,7 @@ export default function Home() {
           Generate Quality Leads on AI Platforms
         </Typography>
         <Typography className="max-w-2xl" variant="h5">
-          Sign up, Create an Ad, and Drive Traffic to your Product
+          Sign up, Create an Ad, Drive Traffic to your Product
         </Typography>
         <a
           href="/signup-advertiser"
@@ -24,6 +24,14 @@ export default function Home() {
         >
           <Button size="tiny" variant="ghost">
             {`Get Started`}
+          </Button>
+        </a>
+        <a
+          href="/creator-page"
+          rel="noopener noreferrer"
+        >
+          <Button size="tiny" className="text-white border-white border bg-transparent hover:bg-white hover:text-black">
+            {`Creator Page`}
           </Button>
         </a>
         <img
