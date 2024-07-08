@@ -18,22 +18,24 @@ export default function Home() {
         <Typography className="max-w-2xl" variant="h5">
           Sign up, Create an Ad, Drive Traffic to your Product
         </Typography>
+        <div className="flex space-x-4">
         <a
-          href="/signup-advertiser"
-          rel="noopener noreferrer"
-        >
-          <Button size="tiny" variant="ghost">
-            {`Get Started`}
-          </Button>
-        </a>
-        <a
-          href="/creator-page"
-          rel="noopener noreferrer"
-        >
-          <Button size="tiny" className="text-white border-white border bg-transparent hover:bg-white hover:text-black">
-            {`Creator Page`}
-          </Button>
-        </a>
+            href="/signup-advertiser"
+            rel="noopener noreferrer"
+          >
+            <Button size="tiny" variant="ghost">
+              {`Get Started`}
+            </Button>
+          </a>
+          <a
+            href="/creator-page"
+            rel="noopener noreferrer"
+          >
+            <Button size="tiny" className="text-white border-white border bg-transparent hover:bg-white hover:text-black">
+              {`Creator Page`}
+            </Button>
+          </a>
+        </div>
         <img
           className="mt-8 rounded-xl"
           width={1048}
