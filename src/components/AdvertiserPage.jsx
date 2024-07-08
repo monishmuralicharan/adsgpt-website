@@ -20,7 +20,8 @@ export default function Home() {
         </Typography>
         <div className="flex space-x-4">
         <a
-            href="/signup-advertiser"
+            href="mailto:adsgpt.info@gmail.com?subject=Advertiser%20Inquiry&body=Please%20write%20a%20description%20of%20the%20product%20you%20want%20to%20advertise%2C%20a%20link%20to%20a%20website%20if%20you%20have%20one%2C%20and%20any%20other%20questions%20you%20have.%20We%20will%20get%20back%20to%20you%20as%20soon%20as%20possible!"
+            target="_blank"
             rel="noopener noreferrer"
           >
             <Button size="tiny" variant="ghost">
@@ -90,7 +91,7 @@ export default function Home() {
             Chat with us through email and schedule a call
           </div>
           <a
-            href="mailto:monish.muralicharan@gmail.com?subject=AdsGPT%20Inquiry&body=Specify%20if%20you%20are%20contacting%20us%20as%20a%20potential%20advertiser%20or%20custom%20GPT%20creator."
+            href="mailto:adsgpt.info@gmail.com?subject=Advertiser%20Inquiry&body=Please%20write%20a%20description%20of%20the%20product%20you%20want%20to%20advertise%2C%20a%20link%20to%20a%20website%20if%20you%20have%20one%2C%20and%20any%20other%20questions%20you%20have.%20We%20will%20get%20back%20to%20you%20as%20soon%20as%20possible!"
             target="_blank"
             rel="noopener noreferrer"
           >
